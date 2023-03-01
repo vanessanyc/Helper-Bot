@@ -1,0 +1,16 @@
+# dependencies
+/node_modules
+
+# build artifacts
+/build
+
+# IDE and editor files
+/.vscode
+/.idea
+
+# configuration files
+.env
+
+# logs and temporary files
+*.log
+*.tmp
