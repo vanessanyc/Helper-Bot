@@ -5,8 +5,8 @@
 /build
 
 # IDE and editor files
-#/.vscode
-#/.idea
+/.vscode
+/.idea
 
 # configuration files
 .env
