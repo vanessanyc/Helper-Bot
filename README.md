@@ -1,9 +1,10 @@
 # Helper-Bot
 
-Helper Bot is a chat bot intended to help users with a myriad of things. 
+Helper Bot is a chat bot intended to help users find mutual aid funds. So far I've implemented NLP technologies to respond based
+on sentiment. 
 
 Features I plan on adding and working on:
 - A display of chat history. 
-- Display of messages between client and bot, right now responses can only be observed after running the backend code. 
-- Developing a focus on helping users find mutual aid organizations wether they need it for themselves or want to donate to one. 
+- Display of messages between client and bot, right now responses can only be observed through the backend. 
+- Implementing axios and cheerio to retrieve HTML content from relevant sites and scrape for relevant info.
 - Deploy. 
