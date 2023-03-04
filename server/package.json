@@ -1,20 +1,18 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "back-end of chat-bot",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "natural": "^6.2.0",
-    "nodeman": "^1.1.2",
-    "sentiment": "^5.0.2",
+    "nodemon": "^2.0.21",
     "socket.io": "^4.6.1"
   }
 }
