@@ -17,6 +17,7 @@ function App() {
 
   const handleSendMessage = () => {
     socket.emit("message", {message});
+    console.log(`Message sent: ${message}`);
     setMessage("");
   };
 
