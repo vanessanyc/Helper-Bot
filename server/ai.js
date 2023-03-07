@@ -1,8 +1,6 @@
+
 const { NlpManager } = require('node-nlp');
-
-
 const manager = new NlpManager({ languages: ['en'] });
-
 
 manager.addDocument('en', 'hi', 'hello', 'hey', 'yo', 'hiya', 'greetings.hello');
 manager.addDocument('en', 'how are you', 'whats up', 'how ya doing', 'how are you doing', 'greetings.howareyou');
@@ -18,7 +16,6 @@ manager.train();
 function generateReply(msg) {
   const result = manager.process('en', msg);
   const intent = result.intent;
-  const entities = result.entities;
 
   switch (intent) {
     case 'greetings.hello':

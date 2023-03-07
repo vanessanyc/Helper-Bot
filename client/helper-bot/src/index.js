@@ -2,6 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Inconsolata']
+  }
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  font-family: 'Inconsolata', monospace;
+}
+
+.Font {
+  font-family: 'Inconsolata', monospace;
 }
 
 .App-logo {
