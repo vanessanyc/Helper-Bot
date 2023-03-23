@@ -2,11 +2,17 @@ const express = require("express");
 const app = express()
 const http = require("http");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const {Server} = require("socket.io")
 const { generateReply } = require('./ai.js');
 
 
 app.use(cors());
+
+mongoose.connect("mongodb+srv://vanessanyc:Dec2001@bot.c6aqzxz.mongodb.net/?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+
+});
 
 const server = http.createServer(app);
 
