@@ -2,6 +2,7 @@
 import './App.css';
 import { io } from 'socket.io-client';
 import { useState } from 'react';
+import hbBot from './Helperbotrobot.png';
 
 const socket = io.connect("http://localhost:3001");
 
@@ -32,15 +33,18 @@ function App() {
 
   return (
     <div className="App">
+      <img src={hbBot} alt="Helper Bot" style={{width: '20%', height: 'auto'}}/>
       <h3>Helper Bot</h3>
-      <input
-        className="Font"
-        type="text" 
-        placeholder="Enter message" 
-        value = {message} 
-        onChange={handleMessageChange}
-      />
-      <button className= "Font" onClick={handleSendMessage}>Send</button>
+      <div className="input-container">
+        <input
+          className="Font"
+          type="text" 
+          placeholder="Enter message" 
+          value = {message} 
+          onChange={handleMessageChange}
+        />
+        <button className= "Font" onClick={handleSendMessage}>Send</button>
+      </div>
       <div>
         <br></br>
         {messages.map((message, index) => (
@@ -56,7 +60,7 @@ function App() {
         ))}
       </div>
     </div>
-  );
+  );  
 }
 
 export default App;

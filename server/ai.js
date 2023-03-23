@@ -1,6 +1,7 @@
 
 const { NlpManager } = require('node-nlp');
 const manager = new NlpManager({ languages: ['en'] });
+//const { getMutualAidFunds } = require('./database.js');
 
 manager.addDocument('en', 'hi', 'hello', 'hello there', 'hey there', 'hey', 'yo', 'hiya', 'HI!', 'heyo', 'greetings.hello');
 manager.addDocument('en', 'good morning', 'good afternoon', 'afternoon', 'greetings.hello');
