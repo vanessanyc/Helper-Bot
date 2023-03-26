@@ -3,10 +3,12 @@ const { NlpManager } = require('node-nlp');
 const manager = new NlpManager({ languages: ['en'] });
 const Mafunds = require('./models/Mafunds');
 
-manager.addDocument('en', 'hi', 'hello', 'hello there', 'hey there', 'hey', 'yo', 'hiya', 'HI!', 'heyo');
-manager.addDocument('en', 'good morning', 'good afternoon', 'afternoon', 'greetings.hello');
-manager.addDocument('en', 'how are you', 'whats up', "how's it going", 'how ya doing', 'how are you doing', 'greetings.howareyou');
-manager.addDocument('en', 'what is your name', 'whats your name', 'greetings.name');
+manager.addDocument('en', 'hi', 'greeting.hello');
+manager.addDocument('en', 'Hello my name is %name%', 'greeting.hello');
+manager.addDocument('en', 'hey', 'greeting.hello');
+manager.addDocument('en', 'good morning', 'greeting.hello');
+manager.addDocument('en', 'how are you', 'greetings.howareyou');
+manager.addDocument('en', 'what is your name', 'greetings.name');
 //manager.addDocument('en', 'Can you help me find a mutual aid fund?', 'find.mutualaid');
 //manager.addDocument('en', 'How can I find a mutual aid group near me?', 'find.mutualaid');
 //manager.addDocument('en', 'What are some mutual aid funds in my area?', 'find.mutualaid');
@@ -22,7 +24,7 @@ async function generateReply(message) {
   console.log(`Input message: ${message}, Intent: ${intent}`);
 
   switch (intent) {
-    case 'hello':
+    case 'greeting.hello':
       return 'Hello! How can I help you today?';
     case 'greetings.howareyou':
       return 'I am doing well, thank you for asking! How about you?';
