@@ -1,7 +1,7 @@
 
 const { NlpManager } = require('node-nlp');
 const manager = new NlpManager({ languages: ['en'] });
-//const { getMutualAidFunds } = require('./database.js');
+//const Mafunds = require('./models/Mafunds');
 
 manager.addDocument('en', 'hi', 'hello', 'hello there', 'hey there', 'hey', 'yo', 'hiya', 'HI!', 'heyo', 'greetings.hello');
 manager.addDocument('en', 'good morning', 'good afternoon', 'afternoon', 'greetings.hello');
@@ -16,10 +16,10 @@ manager.addDocument('en', 'I need help finding a mutual aid fund', 'find.mutuala
 manager.train();
 
 
-function generateReply(msg) {
-  const result = manager.process('en', msg);
+async function generateReply(message) {
+  const result = await manager.process('en', message);
   const intent = result.intent;
-  console.log(`Input message: ${msg}, Intent: ${intent}`);
+  console.log(`Input message: ${message}, Intent: ${intent}`);
 
   switch (intent) {
     case 'greetings.hello':
@@ -28,6 +28,15 @@ function generateReply(msg) {
       return 'I am doing well, thank you for asking! How about you?';
     case 'greetings.name':
       return 'My name is Helper Bot. Nice to meet you!';
+    /*case 'find.mutualaid':
+      const funds = await Mafunds.find({});
+      if (funds.length > 0) {
+        const fundNames = funds.map((fund) => fund.name).join(', ');
+        return `Here are some mutual aid funds that might be able to help you: ${fundNames}`;
+      } else {
+        return "I'm sorry, I couldn't find any mutual aid funds that match your search.";
+      }
+      */
     default:
       return "I'm sorry, I'm not sure I understand your message. Try asking me about mutual aid funds.";
   }

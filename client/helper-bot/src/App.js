@@ -22,12 +22,28 @@ function App() {
     setMessage("");
   };
 
+  socket.on("connect", () => {
+    console.log("Socket connected.");
+  });  
+
+  socket.on("connect_error", (error) => {
+    console.error("Socket connection error:", error);
+  });
+  
+  socket.on("disconnect", (reason) => {
+    console.log("Socket disconnected. Reason:", reason);
+  });  
+
   socket.on("message", (data) => {
-    setMessages([
-      ...messages,
-      { message: data[0].message, isBot: false },
-      { message: data[1].message, isBot: true },
-    ]);
+    console.log(`Message received: ${data[0].message}`);
+    const { message } = data[0];
+    if (message !== messages[messages.length - 1]?.message) {
+      setMessages([
+        ...messages,
+        { message: message, isBot: false },
+        { message: data[0].message, isBot: true },
+      ]);
+    }
   });
   
 

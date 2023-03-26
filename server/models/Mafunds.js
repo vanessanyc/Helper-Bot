@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 
 const MafundsSchema = new mongoose.Schema({
   name: {
@@ -34,4 +34,6 @@ const MafundsSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Mafunds', MafundsSchema);
+const Mafunds = mongoose.model("maFunds", MafundsSchema)
+module.exports = Mafunds
+*/
