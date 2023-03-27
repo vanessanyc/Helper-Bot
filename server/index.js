@@ -10,11 +10,18 @@ const maFundsModel = require("./models/Mafunds");
 app.use(cors());
 
 
-mongoose.connect("mongodb+srv://vanessanyc:Dec2001@bot.c6aqzxz.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://vanessanyc:Dec2001@bot.c6aqzxz.mongodb.net/mafs?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
     }
 );
+
+/*
+app.get("/getMaFunds", async (req, res) => {
+    const maFunds = await maFundsModel.find();
+    res.send(maFunds);
+});
+*/
 
 
 const server = http.createServer(app);

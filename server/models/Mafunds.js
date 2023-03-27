@@ -28,9 +28,6 @@ const MafundsSchema = new mongoose.Schema({
   website: {
     type: String,
     required: true
-  },
-  additionalInfo: {
-    type: String
   }
 });
 
