@@ -22,7 +22,7 @@ const MafundsSchema = new mongoose.Schema({
     required: true
   },
   contact: {
-    type: String,
+    type: [String],
     required: true
   },
   website: {
