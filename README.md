@@ -1,7 +1,12 @@
 # Helper-Bot
 
-Helper Bot is a chat bot intended to help users find mutual aid funds. So far I've implemented NLP technologies to respond based
-on sentiment. 
+Helper Bot is an AI chatbot that help users find mutual aid funds based on their location, marginalized group they belong to, or services they require. 
+
+The chatbot was built using Node.js and the 'node.nlp' library. 
+
+Prerequisites:
+- Node.js must be installed on your machine.
+- Must have access to MongoDB 
 
 Features I plan on adding and working on:
-- Creating a database of mutual aid funds using MongoDB.
+- 
