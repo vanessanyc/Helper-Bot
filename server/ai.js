@@ -12,22 +12,39 @@ manager.addNamedEntityText('location', 'Staten island', ['en'], ['staten-island'
 //Service Entities
 manager.addNamedEntityText('service', 'food', ['en'], ['food']);
 manager.addNamedEntityText('service', 'housing', ['en'], ['housing']);
+manager.addNamedEntityText('service', 'education', ['en'], ['education']);
 
 //Group Entities
 manager.addNamedEntityText('group', 'black', ['en'], ['black']);
+manager.addNamedEntityText('group', 'women', ['en'], ['women', 'woman', 'girls', 'ladies', 'trans-women', 'trans-woman', 'trans woman', 'trans women']);
 manager.addNamedEntityText('group', 'latinx', ['en'], ['latinx']);
 manager.addNamedEntityText('group', 'asian', ['en'], ['Asian', 'asian', 'asian-american', 'asian american']);
 manager.addNamedEntityText('group', 'indigenous', ['en'], ['indigenous']);
-manager.addNamedEntityText('group', 'lgbtq', ['en'], ['lgbtq']);
+manager.addNamedEntityText('group', 'lgbtq', ['en'], ['lgbtq', 'gay', 'lesbian', 'non-binary', 'trans', 'transgender', 'trans-gender']);
+manager.addNamedEntityText('group', 'all', ['en'], ['all', 'everyone', 'anyone', 'anybody', 'anyone', 'anyone', 'anybody', 'anybody', 'anyone']);
 
-
+//Greeting Intents
 manager.addDocument('en', 'hi', 'greeting.hello');
 manager.addDocument('en', 'Hello my name is %name%', 'greeting.hello');
 manager.addDocument('en', 'hey', 'greeting.hello');
 manager.addDocument('en', 'good morning', 'greeting.hello');
+
+//How Are You Intents
 manager.addDocument('en', 'how are you', 'greetings.howareyou');
+
+//Name Intents
 manager.addDocument('en', 'what is your name', 'greetings.name');
+manager.addDocument('en', 'whats your name', 'greetings.name');
+manager.addDocument('en', 'my name is', 'greetings.name');
+
+//When the user is vague
 manager.addDocument('en', 'Can you help me find a mutual aid fund?', 'begin.mutualaid');
+manager.addDocument('en', 'What are some mutual aid funds?', 'begin.mutualaid');
+manager.addDocument('en', 'What are some ma funds?', 'begin.mutualaid');
+manager.addDocument('en', 'I need to find mutual aid funds', 'begin.mutualaid');
+manager.addDocument('en', 'I need to find an ma fund', 'begin.mutualaid');
+
+//Find Mutual Aid Fund Intents
 manager.addDocument('en', 'What are some mutual aid funds in %location%?', 'find.mutualaid');
 manager.addDocument('en', 'Are there any mutual aid funds in %location%?', 'find.mutualaid');
 manager.addDocument('en', 'Are there any mutual aid funds for %group%?', 'find.mutualaid');
@@ -41,26 +58,33 @@ manager.addDocument('en', 'Any mutual aid funds in %location%?', 'find.mutualaid
 manager.addDocument('en', 'Can you find mutual aid funds in %location%?', 'find.mutualaid');
 manager.addDocument('en', 'Show me mutual aid funds in %location%', 'find.mutualaid');
 manager.addDocument('en', 'In %location%?', 'find.mutualaid');
+manager.addDocument('en', 'Can you help me find mutual aid funds that provide %service%', 'find.mutualaid');
 
 
 manager.train({ epochs: 50 });
 
 
 async function generateReply(message) {
+
   const result = await manager.process('en', message);
   const intent = result.intent;
   console.log(`Input message: ${message}, Intent: ${intent}`);
   console.log('Entities:', result.entities);
 
   switch (intent) {
+
     case 'greeting.hello':
       return 'Hello! How can I help you today?';
+
     case 'greetings.howareyou':
       return 'I am doing well, thank you for asking!';
+
     case 'greetings.name':
       return 'My name is Helper Bot. Nice to meet you!';
+
     case 'begin.mutualaid':
-      return 'Sure! Can you provide me with more infomation about your location, the type of services your looking for, or if you are apart of any marginalized group?';
+      return 'Can you provide me with more infomation about your location, the type of services your looking for, or if you are apart of any marginalized group?';
+
     case 'find.mutualaid':
       const { entities } = result;
       console.log('Entities:', entities);
@@ -94,17 +118,19 @@ async function generateReply(message) {
 
       if (fund && fund.length > 0) {
         let response = 'Here are some mutual aid funds that might be able to help you:\n';
+
         fund.forEach((fund, index) => {
           response += `${index + 1}. ${fund.name}\n`;
         });
+
         return response;
       } 
       else {
-        return `I'm sorry, I couldn't find any mutual aid funds in ${location} that match your search.`;
+        return `I'm sorry, I couldn't find any mutual aid funds that match your search.`;
       }
       
     default:
-      return "I'm sorry, I'm not sure I understand your message. Try asking me about mutual aid funds.";
+      return "I'm sorry, I'm not sure I understand your message. Try asking me about mutual aid funds in NYC.";
   }  
 }
 
