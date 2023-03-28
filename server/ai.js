@@ -26,6 +26,7 @@ manager.addNamedEntityText('group', 'all', ['en'], ['all', 'everyone', 'anyone',
 
 //Greeting Intents
 manager.addDocument('en', 'hi', 'greeting.hello');
+manager.addDocument('en', 'hiya', 'greeting.hello');
 manager.addDocument('en', 'Hello my name is %name%', 'greeting.hello');
 manager.addDocument('en', 'hey', 'greeting.hello');
 manager.addDocument('en', 'good morning', 'greeting.hello');
@@ -36,7 +37,6 @@ manager.addDocument('en', 'how are you', 'greetings.howareyou');
 //Name Intents
 manager.addDocument('en', 'what is your name', 'greetings.name');
 manager.addDocument('en', 'whats your name', 'greetings.name');
-manager.addDocument('en', 'my name is', 'greetings.name');
 
 //When the user is vague
 manager.addDocument('en', 'Can you help me find a mutual aid fund?', 'begin.mutualaid');
@@ -44,6 +44,8 @@ manager.addDocument('en', 'What are some mutual aid funds?', 'begin.mutualaid');
 manager.addDocument('en', 'What are some ma funds?', 'begin.mutualaid');
 manager.addDocument('en', 'I need to find mutual aid funds', 'begin.mutualaid');
 manager.addDocument('en', 'I need to find an ma fund', 'begin.mutualaid');
+manager.addDocument('en', 'help', 'begin.mutualaid');
+manager.addDocument('en', 'help me', 'begin.mutualaid');
 
 //Find Mutual Aid Fund Intents
 manager.addDocument('en', 'What are some mutual aid funds in %location%?', 'find.mutualaid');
