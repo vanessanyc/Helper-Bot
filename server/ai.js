@@ -72,9 +72,19 @@ async function generateReply(message) {
       const services = entities.filter(e => e.entity === 'service').map(e => e.option);
       console.log('Services:', services);
 
-      const query = {
-        location: entities.find(e => e.entity === 'location')?.option
-      };
+      const query = {};
+
+      if (location) {
+        query.location = location;
+      }
+
+      if (groups.length > 0) {
+        query.groups = { $in: groups };
+      }
+
+      if (services.length > 0) {
+        query.services = { $in: services };
+      }
 
       console.log('Mafunds model:', Mafunds); //prints out the MaFunds model
       console.log('Query:', query);
@@ -82,8 +92,8 @@ async function generateReply(message) {
       const fund = await Mafunds.find(query);
       console.log('Result of Mafunds.find(query):', fund); //print the result of the find operation
       console.log('Fund:', fund);
-      if (fund) {
-        return `Here is a mutual aid fund in ${location} that might be able to help you: ${fund[0].name}`;
+      if (fund && fund.length > 0) {
+        return `Here is a mutual aid fund that might be able to help you: ${fund[0].name}`;
       } else {
         return `I'm sorry, I couldn't find any mutual aid funds in ${location} that match your search.`;
       }
