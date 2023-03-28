@@ -92,9 +92,15 @@ async function generateReply(message) {
       const fund = await Mafunds.find(query);
       console.log('Result of Mafunds.find(query):', fund); //print the result of the find operation
       console.log('Fund:', fund);
+
       if (fund && fund.length > 0) {
-        return `Here is a mutual aid fund that might be able to help you: ${fund[0].name}`;
-      } else {
+        let response = 'Here are some mutual aid funds that might be able to help you:\n';
+        fund.forEach((fund, index) => {
+          response += `${index + 1}. ${fund.name}\n`;
+        });
+        return response;
+      } 
+      else {
         return `I'm sorry, I couldn't find any mutual aid funds in ${location} that match your search.`;
       }
       
