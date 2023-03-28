@@ -1,6 +1,5 @@
 const { NlpManager } = require('node-nlp');
 const manager = new NlpManager({ languages: ['en'], nlu: { useNoneFeature: true } });
-const mongoose = require("mongoose");
 const Mafunds = require('./models/Mafunds');
 
 //Location Entities
