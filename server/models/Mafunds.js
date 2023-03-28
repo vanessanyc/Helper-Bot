@@ -1,36 +1,15 @@
 const mongoose = require('mongoose');
 
 const MafundsSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  services: {
-    type: [String],
-    required: true
-  },
-  location: {
-    type: String,
-    required: true
-  },
-  groups: {
-    type: [String],
-    required: true
-  },
-  contact: {
-    type: [String],
-    required: true
-  },
-  website: {
-    type: String,
-    required: true
-  }
+  name: String,
+  description: String,
+  services: [String],
+  location: String,
+  groups: String,
+  contact: [String],
+  website: String
 });
 
-const Mafunds = mongoose.model("maFunds", MafundsSchema)
-module.exports = Mafunds
+const Mafunds = mongoose.model('maFunds', MafundsSchema, 'maFunds')
+module.exports = Mafunds;
 

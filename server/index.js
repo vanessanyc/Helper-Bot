@@ -10,11 +10,17 @@ const maFundsModel = require("./models/Mafunds");
 app.use(cors());
 
 
-mongoose.connect("mongodb+srv://vanessanyc:Dec2001@bot.c6aqzxz.mongodb.net/mafs?retryWrites=true&w=majority",
-    {
-        useNewUrlParser: true,
-    }
-);
+mongoose.connect("mongodb+srv://vanessanyc:Dec2001@bot.c6aqzxz.mongodb.net/mafs?retryWrites=true&w=majority", {
+  useNewUrlParser: true,
+})
+.then(() => {
+  console.log('Connected to database:', mongoose.connection.db.databaseName);
+})
+.catch((err) => {
+  console.error('Error connecting to database:', err);
+});
+
+
 
 /*
 app.get("/getMaFunds", async (req, res) => {
