@@ -15,12 +15,13 @@ manager.addNamedEntityText('service', 'housing', ['en'], ['housing']);
 manager.addNamedEntityText('service', 'education', ['en'], ['education']);
 
 //Group Entities
-manager.addNamedEntityText('group', 'black', ['en'], ['black']);
+manager.addNamedEntityText('group', 'black', ['en'], ['black', 'african-american', 'african american', 'african-american', 'african american', 'black-american', 'black american']);
 manager.addNamedEntityText('group', 'women', ['en'], ['women', 'woman', 'girls', 'ladies', 'trans-women', 'trans-woman', 'trans woman', 'trans women']);
-manager.addNamedEntityText('group', 'latinx', ['en'], ['latinx']);
+manager.addNamedEntityText('group', 'latinx', ['en'], ['latinx', "latino", "latina", "latinos", "latinas"]);
 manager.addNamedEntityText('group', 'asian', ['en'], ['Asian', 'asian', 'asian-american', 'asian american']);
-manager.addNamedEntityText('group', 'indigenous', ['en'], ['indigenous']);
-manager.addNamedEntityText('group', 'lgbtq', ['en'], ['lgbtq', 'gay', 'lesbian', 'non-binary', 'trans', 'transgender', 'trans-gender']);
+manager.addNamedEntityText('group', 'muslim', ['en'], ['muslim', 'islam', 'islamic', 'muslims', 'islamic']);
+manager.addNamedEntityText('group', 'indigenous', ['en'], ['indigenous', 'native-american']);
+manager.addNamedEntityText('group', 'lgbtq', ['en'], ['lgbtq', 'gay', 'lesbian', 'non-binary', 'trans', 'transgender', 'trans-gender', 'trans-women', 'trans-woman', 'trans woman', 'trans women']);
 manager.addNamedEntityText('group', 'all', ['en'], ['all', 'everyone', 'anyone', 'anybody', 'anyone', 'anyone', 'anybody', 'anybody', 'anyone']);
 
 //Greeting Intents
