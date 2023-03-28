@@ -1,11 +1,11 @@
 
 const { NlpManager } = require('node-nlp');
-const manager = new NlpManager({ languages: ['en'] });
+const manager = new NlpManager({ languages: ['en'], nlu: { useNoneFeature: true } });
 const mongoose = require("mongoose");
 const Mafunds = require('./models/Mafunds');
 
 //Location Entities
-manager.addNamedEntityText('location', 'queens', ['en'], ['Queens']);
+manager.addNamedEntityText('location', 'queens', ['en'], ['Queens', 'queens']);
 manager.addNamedEntityText('location', 'bronx', ['en'], ['Bronx']);
 manager.addNamedEntityText('location', 'brooklyn', ['en'], ['Brooklyn']);
 manager.addNamedEntityText('location', 'manhattan', ['en'], ['Manhattan']);
@@ -31,13 +31,21 @@ manager.addDocument('en', 'how are you', 'greetings.howareyou');
 manager.addDocument('en', 'what is your name', 'greetings.name');
 manager.addDocument('en', 'Can you help me find a mutual aid fund?', 'begin.mutualaid');
 manager.addDocument('en', 'What are some mutual aid funds in %location%?', 'find.mutualaid');
-manager.addDocument('en', 'What are some mutual aid funds in Queens?', 'find.mutualaid');
+manager.addDocument('en', 'Are there any mutual aid funds in %location%?', 'find.mutualaid');
+manager.addDocument('en', 'Are there any mutual aid funds for %group%?', 'find.mutualaid');
+manager.addDocument('en', 'Are there any mutual aid funds that offer %service%?', 'find.mutualaid');
+manager.addDocument('en', 'Are there any mutual aid funds that give %service%?', 'find.mutualaid');
 manager.addDocument('en', 'What are some mutual aid funds in %location% that offer %service% services?', 'find.mutualaid');
 manager.addDocument('en', 'What are some mutual aid funds in %location% that are part of %group%?', 'find.mutualaid');
 manager.addDocument('en', 'What are some mutual aid funds in %location% that offer %service% services and are part of %group%?', 'find.mutualaid');
+manager.addDocument('en', 'Are there any ma funds in %location%?', 'find.mutualaid');
+manager.addDocument('en', 'Any mutual aid funds in %location%?', 'find.mutualaid');
+manager.addDocument('en', 'Can you find mutual aid funds in %location%?', 'find.mutualaid');
+manager.addDocument('en', 'Show me mutual aid funds in %location%', 'find.mutualaid');
+manager.addDocument('en', 'In %location%?', 'find.mutualaid');
 
 
-manager.train();
+manager.train({ epochs: 50 });
 
 
 async function generateReply(message) {
@@ -59,7 +67,7 @@ async function generateReply(message) {
       const location = entities.find(e => e.entity === 'location')?.option?.value;
       const groups = entities.filter(e => e.entity === 'group').map(e => e.option.value);
       const services = entities.filter(e => e.entity === 'service').map(e => e.option.value);
-      
+
       const query = {
         location: new RegExp(location, 'i'),
         ...(groups.length && { groups: { $in: groups } }),
