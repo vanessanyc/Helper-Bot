@@ -10,7 +10,7 @@ const maFundsModel = require("./models/Mafunds");
 app.use(cors());
 
 
-mongoose.connect("mongodb+srv://vanessanyc:Dec2001@bot.c6aqzxz.mongodb.net/mafs?retryWrites=true&w=majority", {
+const connectFunc = mongoose.connect("mongodb+srv://vanessanyc:Dec2001@bot.c6aqzxz.mongodb.net/mafs?retryWrites=true&w=majority", {
   useNewUrlParser: true,
 })
 .then(() => {
@@ -62,3 +62,5 @@ io.on("connection", (socket) => {
 server.listen(3001, () => {
     console.log("SERVER RUNNING");
 });
+
+module.exports = connectFunc;
