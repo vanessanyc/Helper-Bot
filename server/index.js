@@ -20,16 +20,6 @@ const connectFunc = mongoose.connect("mongodb+srv://vanessanyc:Dec2001@bot.c6aqz
   console.error('Error connecting to database:', err);
 });
 
-
-
-/*
-app.get("/getMaFunds", async (req, res) => {
-    const maFunds = await maFundsModel.find();
-    res.send(maFunds);
-});
-*/
-
-
 const server = http.createServer(app);
 
 const io = new Server(server, {
