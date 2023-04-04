@@ -13,6 +13,7 @@ manager.addNamedEntityText('location', 'Staten island', ['en'], ['staten-island'
 
 //Service Entities
 manager.addNamedEntityText('service', 'food', ['en'], ['food']);
+manager.addNamedEntityText('service', 'immigration', ['en'], ['immigration']);
 manager.addNamedEntityText('service', 'legal', ['en'], ['legal','forms']);
 manager.addNamedEntityText('service', 'housing', ['en'], ['housing','homeless','shelter']);
 manager.addNamedEntityText('service', 'education', ['en'], ['education','school','learning','college']);
@@ -30,7 +31,7 @@ manager.addNamedEntityText('group', 'arab', ['en'], ['Arab','arab']);
 manager.addNamedEntityText('group', 'indigenous', ['en'], ['indigenous', 'native-american']);
 manager.addNamedEntityText('group', 'immigrant', ['en'], ['immigrant']);
 manager.addNamedEntityText('group', 'lgbtq', ['en'], ['lgbtq', 'gay', 'lesbian', 'non-binary', 'trans', 'transgender', 'trans-gender', 'trans-women', 'trans-woman', 'trans woman', 'trans women']);
-manager.addNamedEntityText('group', 'all', ['en'], ['all', 'everyone', 'anyone', 'anybody', 'anyone', 'anyone', 'anybody', 'anybody', 'anyone']);
+manager.addNamedEntityText('group', 'All', ['en'], ['all', 'everyone', 'anyone', 'anybody', 'anyone', 'anyone', 'anybody', 'anybody', 'anyone']);
 
 //Greeting Intents
 manager.addDocument('en', 'hi', 'greeting.hello');
@@ -114,6 +115,7 @@ async function generateReply(message) {
 
       if (groups.length > 0) {
         query.groups = { $in: groups };
+        //query.groups = { $in: [...groups, 'All'] };
       }
 
       if (services.length > 0) {
