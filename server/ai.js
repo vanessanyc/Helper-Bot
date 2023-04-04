@@ -1,6 +1,7 @@
 const { NlpManager } = require('node-nlp');
 const manager = new NlpManager({ languages: ['en'], nlu: { useNoneFeature: true } });
 const Mafunds = require('./models/Mafunds');
+const { randomInt } = require('crypto');
 
 //Location Entities
 manager.addNamedEntityText('location', 'Queens', ['en'], ['Queens', 'queens']);
@@ -11,8 +12,12 @@ manager.addNamedEntityText('location', 'Staten island', ['en'], ['staten-island'
 
 //Service Entities
 manager.addNamedEntityText('service', 'food', ['en'], ['food']);
-manager.addNamedEntityText('service', 'housing', ['en'], ['housing']);
-manager.addNamedEntityText('service', 'education', ['en'], ['education']);
+manager.addNamedEntityText('service', 'legal', ['en'], ['legal','forms']);
+manager.addNamedEntityText('service', 'housing', ['en'], ['housing','homeless','shelter']);
+manager.addNamedEntityText('service', 'education', ['en'], ['education','school','learning','college']);
+manager.addNamedEntityText('service', 'child-care', ['en'], ['child-care','child care', 'babysitting']);
+manager.addNamedEntityText('service', 'mental health', ['en'], ['mental health', 'anxiety','psychosis', 'bipolar','depression', 'burn out', 'burn-out']);
+manager.addNamedEntityText('service', 'immigrant support', ['en'], ['language', 'translation']);
 
 //Group Entities
 manager.addNamedEntityText('group', 'black', ['en'], ['black', 'african-american', 'african american', 'african-american', 'african american', 'black-american', 'black american']);
@@ -120,11 +125,14 @@ async function generateReply(message) {
       console.log('Fund:', fund);
 
       if (fund && fund.length > 0) {
-        let response = 'Here are some mutual aid funds that might be able to help you:\n';
+        const randomIndex = randomInt(fund.length);
+        const randomFund = fund[randomIndex];
+        let response = "Here's a mutual aid fund that might be able to help you:\n";
 
-        fund.forEach((fund, index) => {
-          response += `${index + 1}. ${fund.name}\n`;
-        });
+        response += `${randomFund.name}\n`;
+        //response += `Website: ${randomFund.website}\n`;
+        //response += `Description: ${randomFund.description}\n`;
+        //response += `Contact: ${randomFund.contact}\n\n`;
 
         return response;
       } 
