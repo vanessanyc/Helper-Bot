@@ -5,6 +5,7 @@ const { randomInt } = require('crypto');
 
 //Location Entities
 manager.addNamedEntityText('location', 'Queens', ['en'], ['Queens', 'queens']);
+manager.addNamedEntityText('location', 'Online', ['en'], ['online', 'on the web']);
 manager.addNamedEntityText('location', 'Bronx', ['en'], ['Bronx', 'bronx', 'BX', 'bx']);
 manager.addNamedEntityText('location', 'Brooklyn', ['en'], ['Brooklyn', 'brooklyn', 'BK', 'bk']);
 manager.addNamedEntityText('location', 'Manhattan', ['en'], ['Manhattan', 'manhattan']);
@@ -17,7 +18,7 @@ manager.addNamedEntityText('service', 'housing', ['en'], ['housing','homeless','
 manager.addNamedEntityText('service', 'education', ['en'], ['education','school','learning','college']);
 manager.addNamedEntityText('service', 'child-care', ['en'], ['child-care','child care', 'babysitting']);
 manager.addNamedEntityText('service', 'mental health', ['en'], ['mental health', 'anxiety','psychosis', 'bipolar','depression', 'burn out', 'burn-out']);
-manager.addNamedEntityText('service', 'immigrant support', ['en'], ['language', 'translation']);
+manager.addNamedEntityText('service', 'immigrant support', ['en'], ['language', 'translation', 'immigrant']);
 
 //Group Entities
 manager.addNamedEntityText('group', 'black', ['en'], ['black', 'african-american', 'african american', 'african-american', 'african american', 'black-american', 'black american']);
@@ -25,7 +26,9 @@ manager.addNamedEntityText('group', 'women', ['en'], ['women', 'woman', 'girls',
 manager.addNamedEntityText('group', 'latinx', ['en'], ['latinx', "latino", "latina", "latinos", "latinas"]);
 manager.addNamedEntityText('group', 'asian', ['en'], ['Asian', 'asian', 'asian-american', 'asian american']);
 manager.addNamedEntityText('group', 'muslim', ['en'], ['muslim', 'islam', 'islamic', 'muslims', 'islamic']);
+manager.addNamedEntityText('group', 'arab', ['en'], ['Arab','arab']);
 manager.addNamedEntityText('group', 'indigenous', ['en'], ['indigenous', 'native-american']);
+manager.addNamedEntityText('group', 'immigrant', ['en'], ['immigrant']);
 manager.addNamedEntityText('group', 'lgbtq', ['en'], ['lgbtq', 'gay', 'lesbian', 'non-binary', 'trans', 'transgender', 'trans-gender', 'trans-women', 'trans-woman', 'trans woman', 'trans women']);
 manager.addNamedEntityText('group', 'all', ['en'], ['all', 'everyone', 'anyone', 'anybody', 'anyone', 'anyone', 'anybody', 'anybody', 'anyone']);
 
@@ -128,11 +131,10 @@ async function generateReply(message) {
         const randomIndex = randomInt(fund.length);
         const randomFund = fund[randomIndex];
         let response = "Here's a mutual aid fund that might be able to help you:\n";
-
         response += `${randomFund.name}\n`;
-        //response += `Website: ${randomFund.website}\n`;
-        //response += `Description: ${randomFund.description}\n`;
-        //response += `Contact: ${randomFund.contact}\n\n`;
+        response += `Description: ${randomFund.description}\n`;
+        response += `Website: ${randomFund.website}\n`;
+        response += `Contact: ${randomFund.contact}\n\n`;
 
         return response;
       } 

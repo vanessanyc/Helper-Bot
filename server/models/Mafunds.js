@@ -4,7 +4,7 @@ const MafundsSchema = new mongoose.Schema({
   name: String,
   description: String,
   services: [String],
-  location: String,
+  location: [String],
   groups: String,
   contact: [String],
   website: String
